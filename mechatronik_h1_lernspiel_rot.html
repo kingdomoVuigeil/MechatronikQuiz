@@ -21,7 +21,13 @@
 'use strict';
 const questionsData=JSON.parse(document.getElementById('questionsJson').textContent);
 const $=id=>document.getElementById(id);const selection=$('selection'),categoryList=$('categoryList'),bereichButtons=$('bereichButtons'),startBtn=$('startBtn'),quiz=$('quiz'),questionTitle=$('questionTitle'),questionText=$('questionText'),showAnswerBtn=$('showAnswerBtn'),answerContainer=$('answerContainer'),answerText=$('answerText'),imageContainer=$('imageContainer'),evaluationControls=$('evaluationControls'),correctBtn=$('correctBtn'),wrongBtn=$('wrongBtn'),progressBar=$('progressBar'),statsDiv=$('statsDiv'),result=$('result'),resultText=$('resultText'),restartBtn=$('restartBtn');
-const bereichMap={1:['Montage & Instandhaltung','Elektrische Maschinen'],2:['Grundlagen der Elektrotechnik'],3:['Fertigungstechnik','Werkstofftechnik','Schutzmaßnahmen'],4:['Steuerungstechnik'],5:['Mechatronische Systeme','Mechanische Systeme']};
+const bereichMap={
+  1:['Elektrotechnik-Grundlagen'],
+  2:['Elektrische Sicherheit','Montage & Instandhaltung'],
+  3:['Relais & Schaltungen','Werkstofftechnik','Fertigungstechnik'],
+  4:['Hydraulik & Pneumatik','SPS & Digitaltechnik'],
+  5:['Sensorik & Aktoren','Mess- & Regeltechnik','Mechanische Systeme']
+};
 let allQuestions=[],remainingQuestions=[],currentQuestion=null,answeredCount=0,correctCount=0;
 function renderCategories(){categoryList.innerHTML='';Object.entries(questionsData).forEach(([category,items])=>{const label=document.createElement('label');label.className='category-item';const left=document.createElement('span');const cb=document.createElement('input');cb.type='checkbox';cb.name='category';cb.value=category;left.append(cb,document.createTextNode(category));const count=document.createElement('span');count.className='pill';count.textContent=items.length+' Fragen';label.append(left,count);categoryList.appendChild(label);});}
 function applyBereichFilter(bereich){const targets=new Set((bereichMap[bereich]||[]).filter(cat=>questionsData[cat]));document.querySelectorAll('input[name="category"]').forEach(cb=>{cb.checked=targets.has(cb.value);});document.querySelectorAll('.bereich-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.bereich===String(bereich)));}
