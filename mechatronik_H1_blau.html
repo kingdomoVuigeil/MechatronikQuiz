@@ -65,6 +65,15 @@
     .category-item input {
         margin-right: 0.5rem;
     }
+    .pill {
+        margin-left: auto;
+        background: #eef4fc;
+        color: #0056b3;
+        border-radius: 999px;
+        padding: 0.1rem 0.5rem;
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
     button {
         background-color: var(--primary-color);
         color: white;
@@ -1404,6 +1413,12 @@ function renderCategories() {
         const span = document.createElement('span');
         span.textContent = cat;
         label.appendChild(span);
+
+        const count = document.createElement('span');
+        count.className = 'pill';
+        count.textContent = questionsData[cat].length + ' Fragen';
+        label.appendChild(count);
+
         fragment.appendChild(label);
     });
     categoryList.appendChild(fragment);
