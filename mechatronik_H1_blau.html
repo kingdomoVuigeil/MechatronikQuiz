@@ -74,6 +74,24 @@
         font-size: 0.85rem;
         white-space: nowrap;
     }
+    .bereich-filter {
+        margin-bottom: 1rem;
+    }
+    .bereich-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    .bereich-btn {
+        background: #e9f2ff;
+        color: #0056b3;
+        border: 1px solid #c8dcfa;
+    }
+    .bereich-btn.active {
+        background: var(--primary-color);
+        color: #fff;
+    }
     button {
         background-color: var(--primary-color);
         color: white;
@@ -148,6 +166,16 @@
 <main>
     <div id="selection">
         <h2>Kategorien auswählen</h2>
+        <div class="bereich-filter">
+            <strong>Bereich auswählen (automatische Kategorieauswahl):</strong>
+            <div class="bereich-buttons" id="bereichButtons">
+                <button type="button" class="bereich-btn" data-bereich="1">Bereich 1</button>
+                <button type="button" class="bereich-btn" data-bereich="2">Bereich 2</button>
+                <button type="button" class="bereich-btn" data-bereich="3">Bereich 3</button>
+                <button type="button" class="bereich-btn" data-bereich="4">Bereich 4</button>
+                <button type="button" class="bereich-btn" data-bereich="5">Bereich 5</button>
+            </div>
+        </div>
         <div class="category-list" id="categoryList">
             <!-- Categories will be injected here -->
         </div>
@@ -189,6 +217,7 @@ const questionsData = JSON.parse(document.getElementById("questionsJson").textCo
 // DOM elements
 const selectionContainer = document.getElementById('selection');
 const categoryList = document.getElementById('categoryList');
+const bereichButtonsContainer = document.getElementById('bereichButtons');
 const startBtn = document.getElementById('startBtn');
 const quizContainer = document.getElementById('quiz');
 const questionTitle = document.getElementById('questionTitle');
@@ -205,6 +234,14 @@ const statsDiv = document.getElementById('statsDiv');
 const resultContainer = document.getElementById('result');
 const resultText = document.getElementById('resultText');
 const restartBtn = document.getElementById('restartBtn');
+
+const bereichMap = {
+    1: ['Montage & Instandhaltung', 'Elektrische Maschinen'],
+    2: ['Grundlagen der Elektrotechnik'],
+    3: ['Fertigungstechnik', 'Werkstofftechnik', 'Schutzmaßnahmen'],
+    4: ['Steuerungstechnik'],
+    5: ['Mechatronische Systeme', 'Mechanische Systeme']
+};
 
 // Render category checkboxes
 function renderCategories() {
@@ -229,6 +266,17 @@ function renderCategories() {
         fragment.appendChild(label);
     });
     categoryList.appendChild(fragment);
+}
+
+function applyBereichFilter(bereich) {
+    const targetCategories = new Set((bereichMap[bereich] || []).filter(cat => questionsData[cat]));
+    const checkboxes = document.querySelectorAll('input[name="category"]');
+    checkboxes.forEach(cb => {
+        cb.checked = targetCategories.has(cb.value);
+    });
+    document.querySelectorAll('.bereich-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.bereich === String(bereich));
+    });
 }
 
 // Quiz state
@@ -338,6 +386,11 @@ showAnswerBtn.addEventListener('click', showAnswer);
 correctBtn.addEventListener('click', function() { recordAnswer(true); });
 wrongBtn.addEventListener('click', function() { recordAnswer(false); });
 restartBtn.addEventListener('click', restartQuiz);
+bereichButtonsContainer.addEventListener('click', function(event) {
+    const button = event.target.closest('.bereich-btn');
+    if (!button) return;
+    applyBereichFilter(button.dataset.bereich);
+});
 
 renderCategories();
 </script>
