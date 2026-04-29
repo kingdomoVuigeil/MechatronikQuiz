@@ -136,5 +136,6 @@ function startQuiz(){selected=[...document.querySelectorAll('.category input:che
 function showQ(){const item=questions[index];document.getElementById('answer').style.display='none';document.getElementById('question').innerText=item.q;document.getElementById('answer').innerText=item.a;}
 function showAnswer(){document.getElementById('answer').style.display='block';}
 function next(ok){if(ok)correct++;index++;document.getElementById('bar').style.width=(index/questions.length*100)+'%';document.getElementById('stats').innerText=correct+' / '+index;if(index>=questions.length){alert('Fertig: '+correct+'/'+questions.length);location.reload();}else{showQ();}}
+//test
 </script>
 </body></html>
