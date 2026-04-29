@@ -9,12 +9,13 @@ body{font-family:Arial;margin:0;background:var(--background);color:var(--text-co
 main{max-width:980px;margin:auto;padding:1rem}.category{background:#fff;padding:10px;margin:5px;border-radius:6px;cursor:pointer;border:1px solid #ddd;display:flex;align-items:center;gap:8px}.pill{margin-left:auto;background:#fff6d6;color:#8a6d00;border-radius:999px;padding:2px 8px;font-size:12px}
 .question-box{background:#fff;padding:1rem;border-radius:6px;margin-top:1rem}.answer{background:#fff6d6;padding:1rem;margin-top:1rem;border-radius:6px;display:none;white-space:pre-line}
 button{background:var(--primary-color);color:#222;border:none;padding:10px;border-radius:4px;margin-top:10px;cursor:pointer}a.back-link{display:inline-block;background:var(--primary-color);color:#222;text-decoration:none;padding:10px;border-radius:4px}
+.bereich-filter{margin:0 0 1rem}.bereich-buttons{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}.bereich-btn{background:#fff6d6;color:#8a6d00;border:1px solid #e8cf7a}.bereich-btn.active{background:var(--primary-color)}
 .progress{height:10px;background:#ddd;margin-top:10px}.bar{height:100%;background:var(--accent-color);width:0%}
 </style>
 </head>
 <body>
 <header><h1>Danis Fragen vom letzten Jahr</h1><p><a class="back-link" href="index.html">Zur Landing Page</a></p></header>
-<main><div id="categories"></div><button onclick="startQuiz()">Start</button>
+<main><div class="bereich-filter"><strong>Bereich auswählen (automatische Kategorieauswahl):</strong><div class="bereich-buttons" id="bereichButtons"><button type="button" class="bereich-btn" data-bereich="1">Bereich 1</button><button type="button" class="bereich-btn" data-bereich="2">Bereich 2</button><button type="button" class="bereich-btn" data-bereich="3">Bereich 3</button><button type="button" class="bereich-btn" data-bereich="4">Bereich 4</button><button type="button" class="bereich-btn" data-bereich="5">Bereich 5</button></div></div><div id="categories"></div><button onclick="startQuiz()">Start</button>
 <div id="quiz" style="display:none;"><div class="question-box"><h3 id="question"></h3><button onclick="showAnswer()">Antwort anzeigen</button><div class="answer" id="answer"></div><button onclick="next(true)">Richtig</button><button onclick="next(false)">Falsch</button></div><div class="progress"><div class="bar" id="bar"></div></div><div id="stats"></div></div></main>
 <script id="questionsJson" type="application/json">
 {
@@ -131,6 +132,20 @@ button{background:var(--primary-color);color:#222;border:none;padding:10px;borde
 <script>
 const data = JSON.parse(document.getElementById('questionsJson').textContent);
 let selected=[],questions=[],index=0,correct=0;const catDiv=document.getElementById('categories');
+
+const bereichMap={
+  1:["Elektrotechnik Grundlagen","Elektrische Sicherheit"],
+  2:["Elektrische Maschinen","Relais & Schaltungen"],
+  3:["SPS & Digitaltechnik","Sensorik & Aktoren","Mess- & Regeltechnik"],
+  4:["Hydraulik & Pneumatik","Mechanische Systeme","Montage & Instandhaltung"],
+  5:["Fertigungstechnik","Werkstofftechnik"]
+};
+function applyBereichFilter(bereich){
+  const targets=new Set((bereichMap[bereich]||[]).filter(cat=>data[cat]));
+  document.querySelectorAll('.category input').forEach(cb=>{cb.checked=targets.has(cb.value);});
+  document.querySelectorAll('.bereich-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.bereich===String(bereich)));
+}
+document.getElementById('bereichButtons').addEventListener('click',e=>{const btn=e.target.closest('.bereich-btn');if(!btn)return;applyBereichFilter(btn.dataset.bereich);});
 Object.keys(data).forEach(cat=>{const d=document.createElement('div');d.className='category';d.innerHTML='<input type="checkbox" value="'+cat+'"> <span>'+cat+'</span><span class="pill">'+data[cat].length+' Fragen</span>';d.addEventListener('click',(e)=>{if(e.target.tagName!=="INPUT")d.querySelector('input').checked=!d.querySelector('input').checked;});catDiv.appendChild(d);});
 function startQuiz(){selected=[...document.querySelectorAll('.category input:checked')].map(c=>c.value);if(!selected.length){alert('Kategorie wählen!');return;}questions=[];selected.forEach(c=>questions.push(...data[c]));questions.sort(()=>Math.random()-0.5);index=0;correct=0;document.getElementById('quiz').style.display='block';showQ();}
 function showQ(){const item=questions[index];document.getElementById('answer').style.display='none';document.getElementById('question').innerText=item.q;document.getElementById('answer').innerText=item.a;}
