@@ -19,22 +19,112 @@ button{background:var(--primary-color);color:#222;border:none;padding:10px;borde
 <script id="questionsJson" type="application/json">
 {
   "Elektrotechnik Grundlagen": [
-    {
-      "q": "Was besagt das Ohmsche Gesetz?",
-      "a": "U = R × I."
-    }
+    {"q":"Anschauungsmaterial Elektronik: Widerstand, Diode, bipolarer Transistor, Kondensator, Zenerdiode, LM324 (OP- Verstärker) jeweils mit Anwendungen und Anschlüssen","a":"- Widerstand begrenzt Strom/teilt Spannung; Diode sperrt/leitet in eine Richtung\n- Transistor als Schalter/Verstärker; Kondensator speichert Ladung und glättet\n- Zenerdiode stabilisiert Spannung; LM324 ist ein Operationsverstärker für Signalverarbeitung"},
+    {"q":"Wie werden aus 230 AC 12V DC (Trafo, Gleichrichter) Spannungsverläufe aufzeichnen","a":"- Trafo wandelt 230 V AC auf niedrigere Wechselspannung\n- Gleichrichter wandelt Wechselspannung in pulsierende Gleichspannung\n- Kondensator/Regler glättet und stabilisiert auf 12 V DC"},
+    {"q":"Ströme bei Körperschluss lt. nachfolgender Zeichnung (IL1: 11A, IN: 10A; Knotenregel)","a":"- Nach Knotenregel: zufließende und abfließende Ströme vergleichen\n- Differenzstrom ist der Fehlerstrom\n- Hier: 11 A - 10 A = 1 A Fehlerstrom"},
+    {"q":"Kondensator: Funktion, Ladekurve","a":"- Kondensator speichert elektrische Ladung\n- Beim Laden steigt die Spannung exponentiell an\n- Zeitverhalten hängt von R × C ab"}
   ],
   "SPS & Digitaltechnik": [
-    {
-      "q": "Wie arbeitet eine SPS?",
-      "a": "Eingänge lesen, Programm ausführen, Ausgänge setzen."
-    }
+    {"q":"Eingangssignale SPS (analog, digital)","a":"- Digitale Signale: 0/1, z. B. Taster, Endschalter, Sensor-Ausgang\n- Analoge Signale: veränderliche Werte, z. B. 0–10 V oder 4–20 mA\n- SPS verarbeitet Eingänge nach Programm und schaltet Ausgänge"},
+    {"q":"Wie arbeitet eine SPS.","a":"- Eingänge einlesen\n- Programm zyklisch abarbeiten\n- Ausgänge entsprechend schalten"},
+    {"q":"Aufbau einer SPS (Baugruppen), was sind potentialfreie Kontakte","a":"- Baugruppen: Netzteil, CPU, Eingänge, Ausgänge, Kommunikationsmodule\n- Potentialfreie Kontakte liefern selbst keine Spannung\n- Sie schalten nur einen getrennten Stromkreis"},
+    {"q":"Analoge und digitale Signale","a":"- Digital: zwei Zustände, z. B. 0/1 oder Ein/Aus\n- Analog: stufenloser Wert, z. B. 0–10 V\n- SPS benötigt passende Eingangs-/Ausgangsmodule"},
+    {"q":"Ausgänge SPS (Relais Ausgang und Open Kollektor), was wird benötigt, wenn mit einem Open Kollektor Ausgang ein Relais geschalten wird? (Freilaufdiode)","a":"- Relaisausgang ist potentialfrei und für verschiedene Lasten nutzbar\n- Open-Kollektor schaltet meist gegen Masse\n- Bei Relaisspule Freilaufdiode parallel zur Spule verwenden"}
   ],
   "Elektrische Sicherheit": [
-    {
-      "q": "Wofür steht IP?",
-      "a": "Schutzart gegen Berührung/Fremdkörper und Wasser."
-    }
+    {"q":"Anschauungsobjekte: FI, LS, FI-LS, MSS, Überstromrelais","a":"- FI schützt bei Fehlerstrom gegen elektrischen Schlag\n- LS schützt Leitung vor Überlast und Kurzschluss\n- FI-LS kombiniert FI und LS; MSS/Überstromrelais schützen Motoren"},
+    {"q":"Schaltpläne: FI, MSS, LS usw. erkennen","a":"- FI erkennt man an Summenstromwandler/Testtaste\n- LS an thermisch-magnetischer Auslösung\n- MSS an Motorschutzsymbol und einstellbarem Strombereich"},
+    {"q":"TNC-S Netz einpolig mit einem Verbraucher","a":"- TN-C-S: PEN wird in PE und N aufgeteilt\n- Verbraucher liegt zwischen Außenleiter und Neutralleiter\n- Schutzleiter wird mit Gehäuse verbunden"},
+    {"q":"Nennströme von Schmelzsicherungen mit Kennfarben","a":"- Kennfarben zeigen den Nennstrom der Sicherung\n- Nur passende Sicherungseinsätze verwenden\n- Schutz richtet sich nach Leitung und Verbraucher"},
+    {"q":"DIAZED, NEOZED und NH Sicherungen erklären","a":"- DIAZED/NEOZED sind Schraubsicherungssysteme\n- NEOZED ist kompakter als DIAZED\n- NH-Sicherungen sind Hochleistungs-Sicherungen für hohe Ströme"},
+    {"q":"Wo wird die Schutztrennung eingesetzt","a":"- Bei besonderen Schutzmaßnahmen mit Trenntransformator\n- Häufig auf Baustellen, in Werkstätten oder bei Reparaturen\n- Ein einzelner Verbraucher wird galvanisch getrennt betrieben"},
+    {"q":"Schaubild Motor einmal direkt angeschlossen, einmal über CE Stecker. Welche Fehlerschutzmaßnahme wird jeweils gewählt","a":"- Direkt angeschlossen: Schutzerdung/Nullung je nach Netzform\n- Über CEE-Stecker: Schutzleiteranschluss und meist FI-Schutz\n- Fehlerschutz muss Abschaltbedingungen erfüllen"},
+    {"q":"Was heißt IP, was bedeuten die Ziffern?","a":"- IP = Schutzart eines elektrischen Betriebsmittels\n- Erste Ziffer: Schutz gegen Fremdkörper/Berührung\n- Zweite Ziffer: Schutz gegen Wasser"},
+    {"q":"Schutzklassen erklären, max. Spannung Schutzklasse 3 für Gleich- und Wechselspannung","a":"- Schutzklasse I: Schutzleiter\n- Schutzklasse II: doppelte/verstärkte Isolierung\n- Schutzklasse III: Schutzkleinspannung, z. B. max. 50 V AC / 120 V DC"},
+    {"q":"Wie viele Fehlerschutzmaßnahmen gibt es?","a":"- Schutz durch automatische Abschaltung\n- Schutztrennung\n- Schutzkleinspannung\n- Doppelte/verstärkte Isolierung"},
+    {"q":"Bei welcher Fehlerschutzmaßnahme wird ein Transformator benötigt?","a":"- Bei Schutztrennung\n- Bei Schutzkleinspannung SELV/PELV\n- Transformator sorgt für galvanische Trennung"},
+    {"q":"ÖVE Schutzkonzept erklären","a":"- Basisschutz verhindert direktes Berühren\n- Fehlerschutz schützt bei Fehlern\n- Zusatzschutz erhöht Sicherheit, z. B. FI ≤ 30 mA"},
+    {"q":"Maßnahmen des Basisschutzes","a":"- Isolierung aktiver Teile\n- Abdeckungen und Umhüllungen\n- Hindernisse oder Abstand gegen direktes Berühren"},
+    {"q":"Maßnahmen des Fehlerschutzes","a":"- Automatische Abschaltung der Stromversorgung\n- Schutzerdung/Nullung je nach Netzform\n- Schutztrennung oder Schutzkleinspannung"},
+    {"q":"Maßnahmen vom Zusatzschutz","a":"- FI/RCD mit IΔn ≤ 30 mA\n- Zusätzlicher Potentialausgleich\n- Ergänzt Basis- und Fehlerschutz"},
+    {"q":"Wann ist ein zusätzlicher Schutz (Zusatzschutz) vorgeschrieben?","a":"- Bei Steckdosenstromkreisen nach Vorschrift\n- In Bereichen mit erhöhter Gefahr, z. B. Feuchträume/Baustellen\n- Häufig durch FI/RCD ≤ 30 mA"},
+    {"q":"Schaubild Fehlerarten. Wann löst der LS/FI aus? Warum wird der PE nicht durch den Summenstromwandler geführt?","a":"- LS löst bei Überlast oder Kurzschluss aus\n- FI löst bei Differenzstrom gegen Erde aus\n- PE wird nicht durch den Summenstromwandler geführt, sonst würde der Fehlerstrom mitgemessen/kompensiert"},
+    {"q":"Anschauungsobjekt FI Schutzschalter(40A G/A), Strom Sensitivität, Typen. Wo wird Typ G eingesetzt. Warum wird verzögert? Zeiten? Nach welchem elektrotechnischen Grundgesetz funktioniert er (Kirchhoff 1). Warum 10ms verzögert= (1 Halbwelle, Nulldurchgang)","a":"- FI vergleicht Hin- und Rückstrom nach Kirchhoff 1\n- Typ G ist kurzzeitverzögert und stoßstromfester\n- Verzögerung verhindert Fehlauslösung, z. B. bei Einschaltimpulsen"},
+    {"q":"Anschauungsobjekt FI-LS","a":"- Kombination aus FI und Leitungsschutzschalter\n- Schützt gegen Fehlerstrom, Überlast und Kurzschluss\n- Spart Platz im Verteiler"},
+    {"q":"Kleiner und großer Prüfstrom. Erklärung","a":"- Kleiner Prüfstrom prüft FI-Funktion ohne schnelle Auslösung\n- Großer Prüfstrom prüft Auslösezeit und sichere Abschaltung\n- Messgerät gibt Prüfstrom vor und misst Auslösezeit"},
+    {"q":"Leitungsschutzschalter (C16) Aufgaben, Fehlerarten, Auslösung bei Überlast","a":"- C16 schützt Leitung bis 16 A Nennstrom\n- Thermische Auslösung bei Überlast\n- Magnetische Auslösung bei Kurzschluss"},
+    {"q":"Maßnahmen im Basisschutz","a":"- Isolierung aktiver Teile\n- Abdeckungen und Gehäuse\n- Schutz gegen direktes Berühren"},
+    {"q":"Maßnahmen beim Fehlerschutz","a":"- Schutzerdung mit automatischer Abschaltung\n- Schutztrennung\n- Schutzkleinspannung oder doppelte Isolierung"},
+    {"q":"Schutztrennung bei 2 Geräten","a":"- Grundsätzlich nur ein Verbraucher pro Trenntransformator empfohlen\n- Bei mehreren Geräten besondere Bedingungen/Potentialausgleich beachten\n- Keine Verbindung zu Erde herstellen"},
+    {"q":"Netzarten tw. selbst skizzieren, tw. aus Vorlage erklären","a":"- TN-System: Sternpunkt geerdet, Körper über PE/PEN verbunden\n- TT-System: Körper separat geerdet, FI meist erforderlich\n- IT-System: Netz nicht direkt geerdet, Isolationsüberwachung nötig"},
+    {"q":"Erklären Sie die Überprüfung der Nullung","a":"- Schleifenimpedanz messen\n- Abschaltbedingung prüfen\n- Schutzleiter/PEN-Verbindung und Klemmstellen kontrollieren"},
+    {"q":"Schmelzsicherung bei der Nullung.","a":"- Sicherung muss bei Körperschluss rechtzeitig abschalten\n- Fehlerstrom hängt vom Schleifenwiderstand ab\n- Zu hoher Schleifenwiderstand verhindert sichere Abschaltung"},
+    {"q":"Nullung: Was tun wenn der Schleifenwiderstand zu hoch ist (Klemmstellen überprüfen, Querschnitt erhöhen ...). Überprüfung der Nullung","a":"- Klemmstellen, Schutzleiter/PEN und Übergänge prüfen\n- Leitungsquerschnitt erhöhen oder Leitungslänge verringern\n- Schutzorgan/Absicherung anpassen und erneut messen"},
+    {"q":"Selektivität bei FIs","a":"- Vorgeschalteter FI soll später auslösen als nachgeschalteter\n- Selektive FI sind zeitverzögert\n- Dadurch schaltet nur der fehlerhafte Stromkreis ab"},
+    {"q":"Spannungen bei Schutzkleinspannung. Wie kann diese erzeugt werden. Welche Eigenschaften muss ein Trafo für Schutzkleinspannung haben?","a":"- Schutzkleinspannung z. B. SELV/PELV bis 50 V AC oder 120 V DC\n- Erzeugung durch Sicherheitstransformator oder geeignetes Netzteil\n- Trafo braucht sichere galvanische Trennung"},
+    {"q":"FI im TT Netz aufzeichnen","a":"- Außenleiter und Neutralleiter durch FI führen\n- PE ist separat geerdet und nicht durch den FI geführt\n- FI schaltet bei Fehlerstrom gegen Erde ab"},
+    {"q":"Verhalten FI bei Kurzschluss","a":"- FI schützt nicht gegen Überlast/Kurzschluss\n- Bei Kurzschluss löst LS oder Sicherung aus\n- FI löst nur aus, wenn ein Differenzstrom entsteht"},
+    {"q":"Anschauungsmaterial 2 pol LSS C32A","a":"- Zweipoliger Leitungsschutzschalter schaltet zwei Leiter ab\n- C-Charakteristik für höhere Einschaltströme\n- 32 A Nennstrom, Leitung muss passend dimensioniert sein"},
+    {"q":"Schutzklassen Symbole aufzeichnen","a":"- Schutzklasse I: Schutzleiterzeichen\n- Schutzklasse II: Doppelquadrat\n- Schutzklasse III: Symbol für Schutzkleinspannung"}
+  ],
+  "Elektrische Maschinen": [
+    {"q":"Stern/Dreieckschaltung beim Motor mit Spannung und Ströme bezogen auf ein Typenschild. Strangströme, Außenleiterströme","a":"- Stern: Strangspannung kleiner, Außenleiterstrom = Strangstrom\n- Dreieck: Strangspannung = Außenleiterspannung, Außenleiterstrom größer\n- Typenschild gibt zulässige Spannungen/Ströme für Stern oder Dreieck an"},
+    {"q":"Auf welchen Strom muss der MSS eingestellt werden wenn er im Außenleiter/Strang verschalten ist.","a":"- Im Außenleiter: auf Nennstrom laut Typenschild einstellen\n- Im Strang: auf Strangstrom einstellen\n- Bei Dreieck im Strang etwa Außenleiterstrom / √3"},
+    {"q":"Motorschutz: MSS, Überstromrelais, Motorvollschutz, warum mit PTC (Drahtbruchsicherheit)","a":"- MSS schützt Motor gegen Überlast und Kurzschluss\n- Überstromrelais löst bei längerem Überstrom aus\n- PTC überwacht Wicklungstemperatur direkt und erkennt Überhitzung"},
+    {"q":"Funktion Asynchronmotor","a":"- Stator erzeugt Drehfeld\n- Im Rotor wird Strom induziert\n- Rotor läuft mit Schlupf dem Drehfeld nach"},
+    {"q":"Anlaufstrom","a":"- Beim Start ist der Motorstrom deutlich höher als im Betrieb\n- Ursache: Rotor steht, Gegeninduktion fehlt\n- Reduzierung z. B. durch Stern-Dreieck oder Frequenzumrichter"},
+    {"q":"Drehzahländerung bei einem Asynchronmotor","a":"- Drehzahl hängt von Frequenz, Polpaarzahl und Schlupf ab\n- Am besten über Frequenzumrichter regelbar\n- Spannung allein ist keine saubere Drehzahlregelung"},
+    {"q":"Anlaufverfahren bei einem Asynchronmotor","a":"- Direktanlauf bei kleinen Motoren\n- Stern-Dreieck-Anlauf zur Stromreduzierung\n- Sanftstarter oder Frequenzumrichter für schonenden Anlauf"},
+    {"q":"Funktion FU mit Blockschaltbild","a":"- Gleichrichter wandelt AC in DC\n- Zwischenkreis glättet die Gleichspannung\n- Wechselrichter erzeugt variable Frequenz/Spannung für den Motor"},
+    {"q":"Was ist zu beachten wenn ein Motor durch einen FU langsamer dreht? (Kühlung)","a":"- Eigenlüfter kühlt bei niedriger Drehzahl schlechter\n- Motor kann überhitzen\n- Fremdlüfter oder Temperaturüberwachung einsetzen"},
+    {"q":"Anschauungsmaterial Universalmotor, Aufbau erklären","a":"- Besteht aus Stator, Rotor/Anker, Kommutator und Bürsten\n- Läuft mit Gleich- und Wechselspannung\n- Hohe Drehzahl, z. B. in Handmaschinen"}
+  ],
+  "Relais & Schaltungen": [
+    {"q":"Wendeschützschaltung, Stern-Dreieckschaltung erklären","a":"- Wendeschütz ändert Drehrichtung durch Vertauschen zweier Außenleiter\n- Elektrische/mechanische Verriegelung verhindert gleichzeitiges Einschalten\n- Stern-Dreieck reduziert Anlaufstrom durch Start in Stern, Betrieb in Dreieck"},
+    {"q":"Wo findet man die Bemessungsspannung einer Schützspule?","a":"- Auf dem Schütz bzw. direkt auf der Spule\n- In Datenblatt oder Schaltplan\n- Wichtig für richtige Ansteuerung, z. B. 24 V DC oder 230 V AC"},
+    {"q":"Wie funktioniert ein Relais, welche Kontakte hat es. Vergleich mit Schütz","a":"- Spule erzeugt Magnetfeld und bewegt Kontakte\n- Kontakte: Schließer, Öffner, Wechsler\n- Schütz ist für größere Leistungen/Lasten ausgelegt"},
+    {"q":"Welche Funktion hat die Diode beim Relais, wie muss die Spule angeschlossen werden","a":"- Diode dient als Freilaufdiode gegen Induktionsspannung\n- Sie wird parallel zur Relaisspule angeschlossen\n- Bei DC Polung beachten: Diode in Sperrrichtung zur Betriebsspannung"}
+  ],
+  "Hydraulik & Pneumatik": [
+    {"q":"Anschauungsmaterial: Pneumatikzylinder (DWZ mit einstellbarer Endlagendämpfung)","a":"- DWZ = doppeltwirkender Zylinder mit Druckluft für Aus- und Einfahren\n- Endlagendämpfung bremst Kolben am Hubende\n- Dämpfung wird über Stellschrauben eingestellt"},
+    {"q":"Welcher der beiden Zylinder hat mehr Kraft (Kolbendurchmesser beachten)","a":"- Kraft = Druck × Fläche\n- Größerer Kolbendurchmesser hat größere Fläche\n- Daher erzeugt der größere Zylinder bei gleichem Druck mehr Kraft"},
+    {"q":"Pneumatik/Hydraulik Vor- und Nachteile","a":"- Pneumatik: schnell, sauber, einfach; aber kompressibel und geringere Kräfte\n- Hydraulik: hohe Kräfte und genaue Bewegung; aber Leckage/Ölproblem möglich\n- Auswahl hängt von Kraft, Geschwindigkeit und Genauigkeit ab"},
+    {"q":"Aufbau einer Wartungseinheit","a":"- Besteht meist aus Filter, Druckregler und Öler\n- Filter entfernt Schmutz/Wasser\n- Druckregler stellt Arbeitsdruck ein"},
+    {"q":"Wie werden Pneumatikzylinder angesteuert?","a":"- Über Wegeventile, z. B. 5/2- oder 5/3-Wegeventil\n- Ventile können elektrisch, pneumatisch oder manuell betätigt werden\n- Drosselventile regeln die Geschwindigkeit"}
+  ],
+  "Fertigungstechnik": [
+    {"q":"Innengewinde herstellen, Kernlochdurchmesser bestimmen (Messschieber)","a":"- Kernloch bohren, ansenken, Gewinde schneiden\n- Kernlochdurchmesser ≈ Nenndurchmesser minus Steigung\n- Messschieber misst Bohrungsdurchmesser zur Kontrolle"},
+    {"q":"Wie sind die Gewindebohrer gekennzeichnet.","a":"- Häufig als Satz: Vorschneider, Mittelschneider, Fertigschneider\n- Kennzeichnung durch Ringe oder Aufschrift\n- Gewindegröße und Steigung stehen auf dem Werkzeug"},
+    {"q":"Schaubild Drehmaschine. Aufbau erklären (FT)","a":"- Hauptbaugruppen: Bett, Spindelstock, Reitstock, Support\n- Werkstück rotiert in der Spindel\n- Werkzeug bewegt sich über Support/Vorschub"},
+    {"q":"Zug- Leitspindel Aufgaben (FT)","a":"- Zugspindel treibt den Vorschub beim Drehen an\n- Leitspindel wird zum Gewindeschneiden verwendet\n- Beide übertragen Bewegung auf den Support"},
+    {"q":"Drehmaschine Führungsarten (FT)","a":"- Führungen führen Schlitten geradlinig und genau\n- Beispiele: Flachführung, Prismenführung, Schwalbenschwanzführung\n- Sie müssen sauber und geschmiert sein"},
+    {"q":"Schutzeinrichtungen, Spannvorrichtungen, Nothalt bei der Drehmaschine (FT)","a":"- Schutzeinrichtungen: Futterschutz, Späneschutz, Abdeckungen\n- Spannvorrichtungen: Dreibackenfutter, Vierbackenfutter, Spannzangen\n- Nothalt stoppt Maschine im Gefahrenfall sofort"},
+    {"q":"Schneidwerkzeuge und Schneidstoffe (FT)","a":"- Werkzeuge: Drehmeißel, Bohrer, Fräser\n- Schneidstoffe: HSS, Hartmetall, Keramik\n- Auswahl nach Werkstoff, Schnittgeschwindigkeit und Standzeit"}
+  ],
+  "Mechanische Systeme": [
+    {"q":"Welche Gewindearten kennen Sie (Befestigungs-, Bewegungsgewinde)","a":"- Befestigungsgewinde: metrisches Regel-/Feingewinde\n- Bewegungsgewinde: Trapezgewinde, Rundgewinde\n- Bewegungsgewinde wandeln Drehbewegung in Längsbewegung um"},
+    {"q":"Messen einer Schraube (M16)","a":"- Außendurchmesser mit Messschieber messen\n- Steigung mit Gewindelehre bestimmen\n- M16 bedeutet metrisches Gewinde mit 16 mm Nenndurchmesser"}
+  ],
+  "Montage & Instandhaltung": [
+    {"q":"Verbindungsarten (lösbar, unlösbar)","a":"- Lösbar: Schrauben, Bolzen, Passfedern\n- Unlösbar: Schweißen, Nieten, Kleben\n- Auswahl hängt von Belastung und Wartbarkeit ab"},
+    {"q":"Wie kann man eine Schraubverbindung gegen lösen sichern?","a":"- Federring, Sicherungsmutter oder Klemmteil\n- Schraubensicherungslack\n- Formschlüssige Sicherung wie Splint oder Sicherungsblech"},
+    {"q":"Lösbare/unlösbare Verbindungen mit Beispielen","a":"- Lösbar: Schrauben, Stifte, Passfedern\n- Unlösbar: Schweißen, Löten, Kleben, Nieten\n- Lösbare Verbindungen sind wartungsfreundlicher"}
+  ],
+  "Mess- & Regeltechnik": [
+    {"q":"Messschieber Teile und Anwendung. Nonius","a":"- Teile: feste/bewegliche Messschenkel, Tiefenmaß, Skala, Nonius\n- Misst Außenmaß, Innenmaß und Tiefe\n- Nonius ermöglicht genaues Ablesen kleiner Teilungen"},
+    {"q":"Bügelmessschraube Anwendung","a":"- Dient zum genauen Messen kleiner Außenmaße\n- Ablesung über Spindel und Trommel\n- Ratsche sorgt für gleichmäßige Messkraft"},
+    {"q":"4-20mA Schnittstelle (Sensoren als Anschauungsmaterial)","a":"- Stromsignal für analoge Messwerte\n- 4 mA = Messbereichsanfang, 20 mA = Messbereichsende\n- Leitungsfehler erkennbar, wenn Signal unter 4 mA fällt"},
+    {"q":"Überprüfung einer FI Schutzschaltung. Welches Messgerät wird verwendet.","a":"- FI/RCD-Prüfgerät oder Installationstester\n- Misst Auslösestrom und Auslösezeit\n- Prüft richtige Funktion der Schutzmaßnahme"},
+    {"q":"Berechnung des Schleifenwiderstandes","a":"- Schleifenwiderstand aus Spannung und Fehlerstrom berechnen\n- Formel: Zs = U0 / Ia\n- Zs muss klein genug sein, damit Schutzorgan auslöst"},
+    {"q":"Erklären Sie die Messung des Isolationswiderstandes. Warum geht das mit einem Multimeter nicht?","a":"- Isolationsmessgerät prüft mit hoher Prüfspannung\n- Gemessen wird Widerstand zwischen aktiven Leitern und PE\n- Multimeter hat zu geringe Messspannung und erkennt Isolationsfehler nicht sicher"}
+  ],
+  "Werkstofftechnik": [
+    {"q":"Benennung verschiedener Werkstoffe (Anschauungsmaterial) (FT)","a":"- Werkstoffe z. B. Stahl, Gusseisen, Aluminium, Kupfer, Kunststoff\n- Erkennen nach Aussehen, Gewicht, Magnetismus, Kennzeichnung\n- Eigenschaften bestimmen Einsatzgebiet"},
+    {"q":"Oberflächenschutz von Werkstoffen (FT)","a":"- Schützt vor Korrosion und Verschleiß\n- Beispiele: Lackieren, Verzinken, Brünieren, Eloxieren\n- Oberfläche muss vorher gereinigt/vorbereitet werden"}
+  ],
+  "Sensorik & Aktoren": [
+    {"q":"Sensoren: Kapazitiver, Induktiver mit Erklärung der Funktion und des Einbaus","a":"- Induktiver Sensor erkennt metallische Objekte\n- Kapazitiver Sensor erkennt auch Nichtmetalle/Flüssigkeiten\n- Einbauabstände und bündig/nicht bündig beachten"},
+    {"q":"Drucksensor, induktiver Sensor, kapazitiver Sensor, Reflexlichttaster","a":"- Drucksensor misst Druck und liefert Schaltsignal/Analogsignal\n- Induktiv: Metall; kapazitiv: viele Materialien\n- Reflexlichttaster erkennt Objekte über reflektiertes Licht"}
   ]
 }
 </script>
