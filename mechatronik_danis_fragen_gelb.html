@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danis Fragen vom letzten Jahr</title>
+<style>
+:root{--primary-color:#f0c419;--secondary-color:#d4a80f;--background:#fffdf5;--text-color:#333;--accent-color:#f7d75b}
+body{font-family:Arial;margin:0;background:var(--background);color:var(--text-color)}header{background:linear-gradient(45deg,var(--primary-color),var(--secondary-color));padding:1.5rem;text-align:center}
+main{max-width:980px;margin:auto;padding:1rem}.category{background:#fff;padding:10px;margin:5px;border-radius:6px;cursor:pointer;border:1px solid #ddd;display:flex;align-items:center;gap:8px}.pill{margin-left:auto;background:#fff6d6;color:#8a6d00;border-radius:999px;padding:2px 8px;font-size:12px}
+.question-box{background:#fff;padding:1rem;border-radius:6px;margin-top:1rem}.answer{background:#fff6d6;padding:1rem;margin-top:1rem;border-radius:6px;display:none;white-space:pre-line}
+button{background:var(--primary-color);color:#222;border:none;padding:10px;border-radius:4px;margin-top:10px;cursor:pointer}a.back-link{display:inline-block;background:var(--primary-color);color:#222;text-decoration:none;padding:10px;border-radius:4px}
+.progress{height:10px;background:#ddd;margin-top:10px}.bar{height:100%;background:var(--accent-color);width:0%}
+</style>
+</head>
+<body>
+<header><h1>Danis Fragen vom letzten Jahr</h1><p><a class="back-link" href="index.html">Zur Landing Page</a></p></header>
+<main><div id="categories"></div><button onclick="startQuiz()">Start</button>
+<div id="quiz" style="display:none;"><div class="question-box"><h3 id="question"></h3><button onclick="showAnswer()">Antwort anzeigen</button><div class="answer" id="answer"></div><button onclick="next(true)">Richtig</button><button onclick="next(false)">Falsch</button></div><div class="progress"><div class="bar" id="bar"></div></div><div id="stats"></div></div></main>
+<script id="questionsJson" type="application/json">
+{
+  "Elektrotechnik Grundlagen": [
+    {
+      "q": "Was besagt das Ohmsche Gesetz?",
+      "a": "U = R × I."
+    }
+  ],
+  "SPS & Digitaltechnik": [
+    {
+      "q": "Wie arbeitet eine SPS?",
+      "a": "Eingänge lesen, Programm ausführen, Ausgänge setzen."
+    }
+  ],
+  "Elektrische Sicherheit": [
+    {
+      "q": "Wofür steht IP?",
+      "a": "Schutzart gegen Berührung/Fremdkörper und Wasser."
+    }
+  ]
+}
+</script>
+<script>
+const data = JSON.parse(document.getElementById('questionsJson').textContent);
+let selected=[],questions=[],index=0,correct=0;const catDiv=document.getElementById('categories');
+Object.keys(data).forEach(cat=>{const d=document.createElement('div');d.className='category';d.innerHTML='<input type="checkbox" value="'+cat+'"> <span>'+cat+'</span><span class="pill">'+data[cat].length+' Fragen</span>';d.addEventListener('click',(e)=>{if(e.target.tagName!=="INPUT")d.querySelector('input').checked=!d.querySelector('input').checked;});catDiv.appendChild(d);});
+function startQuiz(){selected=[...document.querySelectorAll('.category input:checked')].map(c=>c.value);if(!selected.length){alert('Kategorie wählen!');return;}questions=[];selected.forEach(c=>questions.push(...data[c]));questions.sort(()=>Math.random()-0.5);index=0;correct=0;document.getElementById('quiz').style.display='block';showQ();}
+function showQ(){const item=questions[index];document.getElementById('answer').style.display='none';document.getElementById('question').innerText=item.q;document.getElementById('answer').innerText=item.a;}
+function showAnswer(){document.getElementById('answer').style.display='block';}
+function next(ok){if(ok)correct++;index++;document.getElementById('bar').style.width=(index/questions.length*100)+'%';document.getElementById('stats').innerText=correct+' / '+index;if(index>=questions.length){alert('Fertig: '+correct+'/'+questions.length);location.reload();}else{showQ();}}
+</script>
+</body></html>
