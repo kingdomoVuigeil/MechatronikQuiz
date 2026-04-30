@@ -134,11 +134,11 @@ const data = JSON.parse(document.getElementById('questionsJson').textContent);
 let selected=[],questions=[],index=0,correct=0;const catDiv=document.getElementById('categories');
 
 const bereichMap={
-  1:["Elektrotechnik Grundlagen","Elektrische Sicherheit"],
-  2:["Elektrische Maschinen","Relais & Schaltungen"],
-  3:["SPS & Digitaltechnik","Sensorik & Aktoren","Mess- & Regeltechnik"],
-  4:["Hydraulik & Pneumatik","Mechanische Systeme","Montage & Instandhaltung"],
-  5:["Fertigungstechnik","Werkstofftechnik"]
+  1:["Elektrotechnik Grundlagen"],
+  2:["Elektrische Sicherheit","Montage & Instandhaltung"],
+  3:["Relais & Schaltungen","Werkstofftechnik","Fertigungstechnik","Elektrische Maschinen"],
+  4:["Hydraulik & Pneumatik","SPS & Digitaltechnik"],
+  5:["Sensorik & Aktoren","Mess- & Regeltechnik","Mechanische Systeme"]
 };
 function applyBereichFilter(bereich){
   const targets=new Set((bereichMap[bereich]||[]).filter(cat=>data[cat]));
